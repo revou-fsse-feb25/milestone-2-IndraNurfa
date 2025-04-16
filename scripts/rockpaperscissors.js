@@ -3,12 +3,14 @@ const menu = document.getElementById('menu');
 const playerSpan = document.getElementById('player-choices');
 const resultHeader = document.getElementById('result');
 const scoreDisplay = document.getElementById('current-score');
+const newHighScoreDisplay = document.getElementById('new-high-score');
 
 document.querySelector('[data-choices="rock"]').innerText = 'Rock';
 document.querySelector('[data-choices="paper"]').innerText = 'Paper';
 document.querySelector('[data-choices="scissors"]').innerText = 'Scissors';
 
 let userChoices = 'none';
+let score = parseInt(localStorage.getItem('scoreRPS'), 10) || 0;
 
 const CHOICES = ['rock', 'paper', 'scissors'];
 const WINNING_CONDITIONS = {
@@ -34,8 +36,13 @@ function determineWinner(playerChoice, computerChoice) {
 	return `You lose! ${computerChoice.toUpperCase()} beats ${playerChoice.toUpperCase()}.`;
 }
 
+function resetGame() {
+	score = 0;
+	scoreDisplay.innerHTML = '';
+	newHighScoreDisplay.innerHTML = '';
+}
+
 function logicGame(userChoices) {
-	let score = parseInt(localStorage.getItem('score'), 10) || 0;
 	const computerChoices = generateRandomChoice();
 	console.log(`Computer choose: ${computerChoices.toUpperCase()}`);
 	console.log(`You clicked: ${userChoices.toUpperCase()}`);
@@ -44,21 +51,21 @@ function logicGame(userChoices) {
 
 	const result = determineWinner(userChoices, computerChoices);
 	console.log(`${result}`);
+	resultHeader.innerHTML = `${result}`;
 
 	if (result.includes('win')) {
 		score += 10;
+		scoreDisplay.innerHTML = `Current Score: ${score}`;
 	} else if (result.includes('lose')) {
-		score = 0;
+		resetGame();
 	}
 	localStorage.setItem('score', score);
 
-	const highScore = parseInt(localStorage.getItem('highScore'), 10) || 0;
+	const highScore = parseInt(localStorage.getItem('highScoreRPS'), 10) || 0;
 	if (score > highScore) {
-		localStorage.setItem('highScore', score);
+		localStorage.setItem('highScoreRPS', score);
+		newHighScoreDisplay.innerHTML = `New High Score: ${score}!`;
 	}
-
-	resultHeader.innerHTML = `${result}`;
-	scoreDisplay.innerHTML = `Current Score = ${score}`;
 }
 
 function handleChoices(event) {

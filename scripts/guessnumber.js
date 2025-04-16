@@ -4,8 +4,10 @@ const itemList = document.getElementById('item-list');
 const resultHeader = document.getElementById('result-game');
 const resetBtn = document.getElementById('reset-btn');
 
-let attempts = 2;
+let attempts = 5;
 let randomNumber = 0;
+let startTime = 0; // Track the start time
+let score = 0; // Track the score
 
 resetBtn.style.display = 'none';
 
@@ -15,15 +17,16 @@ function handleAddItem() {
 		return;
 	}
 
-	if (randomNumber == 0) {
+	if (randomNumber === 0) {
 		randomNumber = generateRandomNumber();
+		startTime = Date.now();
 	}
 	console.log(randomNumber);
 
 	const numberInput = newItemInput.value.trim();
 	const number = parseInt(numberInput, 10);
 
-	if (!isNaN(number) && number >= 0 && number <= 100) {
+	if (!isNaN(number) && number >= 1 && number <= 100) {
 		const li = document.createElement('li');
 		li.textContent = number;
 
@@ -35,13 +38,13 @@ function handleAddItem() {
 		itemList.appendChild(li);
 
 		newItemInput.value = '';
-		if (number == randomNumber) {
+		if (number === randomNumber) {
 			finishGame();
 			return;
 		}
 
 		attempts--;
-		if (attempts == 0) {
+		if (attempts === 0) {
 			resultHeader.innerText = "You Lose :')";
 			resetBtn.style.display = 'block';
 			resetBtn.textContent = 'Restart Game';
@@ -53,13 +56,19 @@ function handleAddItem() {
 }
 
 function finishGame() {
-	resultHeader.innerText = `Nice, guess number is ${randomNumber}`;
+	const endTime = Date.now(); // Get the end time
+	const elapsedTime = (endTime - startTime) / 1000; // Calculate elapsed time in seconds
+
+	// Calculate score based on elapsed time and remaining attempts
+	score = Math.max(100 - Math.floor(elapsedTime * 10) + attempts * 10, 0);
+
+	resultHeader.innerText = `Nice, guess number is ${randomNumber}. Your score: ${score}`;
 	resetBtn.style.display = 'block';
 	resetBtn.textContent = 'Restart Game';
 }
 
 function generateRandomNumber() {
-	return Math.floor(Math.random() * 100);
+	return Math.floor(Math.random() * 100) + 1;
 }
 
 function resetGame() {
@@ -67,7 +76,7 @@ function resetGame() {
 		itemList.removeChild(itemList.firstChild);
 	}
 
-	attempts = 2;
+	attempts = 5;
 	randomNumber = 0;
 
 	resultHeader.innerText = '';
