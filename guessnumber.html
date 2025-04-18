@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-	</head>
-	<body>
-		<div id="manipulation-demo">
-			<h3>Add & Remove Elements</h3>
-			<input type="number" id="new-item" placeholder="Enter Number" />
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Tailwind -->
+	<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet" />
+
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/65199da800.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="css/style.css" />
+
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="container mt-[10px] mx-auto space-y-4 p-4">
+		<a href="./index.html">
+			<i class="fa-solid fa-house"></i> Home
+		</a>
+	</div>
+
+	<div class="container mt-[200px] mb-[50px] mx-auto flex flex-col items-center justify-center space-y-4 p-4">
+		<h1 class="text-3xl font-bold text-center">Guess Number</h1>
+		<div class="block">
+			<input type="number" id="new-item" placeholder="Enter Number"
+				class="border-2 border-indigo-600 rounded-lg" />
 			<button id="add-btn">Add Item</button>
-			<ul id="item-list"></ul>
 		</div>
-		<div>
-			<h1 id="result-game"></h1>
-			<button id="reset-btn" style="display: none;"></button>
-		</div>
-		<script src="scripts/guessnumber.js"></script>
-	</body>
+
+		<ul id="item-list"></ul>
+	</div>
+	<div>
+		<h1 id="result-game"></h1>
+		<button id="reset-btn" style="display: none;"></button>
+	</div>
+	<script src="scripts/guessnumber.js"></script>
+</body>
+
 </html>

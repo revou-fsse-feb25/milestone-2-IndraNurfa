@@ -1,62 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!-- Tailwind -->
-		<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap"
-			rel="stylesheet"
-		/>
+	<!-- Tailwind -->
+	<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
-		<link rel="stylesheet" href="css/style.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet" />
 
-		<title>ROCKPAPERSCISSORGAME</title>
-	</head>
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/65199da800.js" crossorigin="anonymous"></script>
 
-	<body>
-		<div
-			class="container my-[100px] mx-auto flex flex-col items-center justify-center text-center space-y-4 p-4"
-		>
-			<h1 class="text-3xl font-bold">Rock Paper Scissors Game</h1>
-			<p class="text-lg">Choose your weapon!</p>
-		</div>
-		<div
-			id="player-input"
-			class="container mx-auto flex items-center justify-center space-x-10"
-		>
-			<button
-				id="choices-btn"
-				type="button"
-				data-choices="rock"
-				class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-			></button>
-			<button
-				id="choices-btn"
-				type="button"
-				data-choices="paper"
-				class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-			></button>
-			<button
-				id="choices-btn"
-				type="button"
-				data-choices="scissors"
-				class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:focus:ring-yellow-900"
-			></button>
-		</div>
-		<div
-			class="container mt-12 mx-auto flex flex-col items-center justify-center text-center space-y-4 p-4"
-		>
-			<h1 id="result" class="font-bold text-2xl"></h1>
-			<p id="player-choices" class="text-lg"></p>
-			<p id="current-score" class="text-lg"></p>
-			<p id="new-high-score" class="text-lg text-red-600"></p>
-		</div>
-		<script src="scripts/rockpaperscissors.js"></script>
-	</body>
+	<link rel="stylesheet" href="css/style.css" />
+
+	<title>ROCKPAPERSCISSORGAME</title>
+</head>
+
+<body>
+	<div class="container mt-[10px] mx-auto space-y-4 p-4">
+		<a href="./index.html">
+			<i class="fa-solid fa-house"></i> Home
+		</a>
+	</div>
+
+	<div
+		class="container mt-[200px] mb-[50px] mx-auto flex flex-col items-center justify-center text-center space-y-4 p-4">
+		<h1 class="text-3xl font-bold">Rock Paper Scissors Game</h1>
+		<p class="text-lg">Choose your weapon!</p>
+	</div>
+	<div id="player-input" class="container mx-auto flex items-center justify-center space-x-10">
+		<button id="choices-btn" type="button" data-choices="rock"
+			class="focus:outline-none text-white bg-[#cb2041] hover:bg-[#c46038] focus:ring-2 focus:ring-[#552537] font-medium rounded-lg text-md px-5 py-2.5"></button>
+		<button id="choices-btn" type="button" data-choices="paper"
+			class="focus:outline-none text-white bg-[#1f8852] hover:bg-[#6c881f] focus:ring-2 focus:ring-[#22422d] font-medium rounded-lg text-md px-5 py-2.5"></button>
+		<button id="choices-btn" type="button" data-choices="scissors"
+			class="focus:outline-none text-white bg-[#1F5B93] hover:bg-[#0c7d91] focus:ring-2 focus:ring-[#29335C] font-medium rounded-lg text-md px-5 py-2.5"></button>
+	</div>
+	<div class="container mt-12 mx-auto flex flex-col items-center justify-center text-center space-y-4 p-4">
+		<h1 id="result" class="font-bold text-2xl"></h1>
+		<p id="player-choices" class="text-lg"></p>
+		<p id="current-score" class="text-lg"></p>
+		<p id="new-high-score" class="text-lg text-red-600"></p>
+	</div>
+	<script src="scripts/rockpaperscissors.js"></script>
+</body>
+
 </html>

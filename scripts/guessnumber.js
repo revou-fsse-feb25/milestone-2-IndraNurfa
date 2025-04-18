@@ -30,11 +30,17 @@ function handleAddItem() {
 		const li = document.createElement('li');
 		li.textContent = number;
 
-		const deleteBtn = document.createElement('span');
-		deleteBtn.textContent = 'low or high';
-		deleteBtn.className = 'delete-btn';
+		const hintText = document.createElement('span');
+		const difference = Math.abs(number - randomNumber);
+		if (number > randomNumber) {
+			hintText.textContent =
+				difference <= 10 ? " too high, but you're close" : ' too high';
+		} else {
+			hintText.textContent =
+				difference <= 10 ? " too low, but you're close" : ' too low';
+		}
 
-		li.appendChild(deleteBtn);
+		li.appendChild(hintText);
 		itemList.appendChild(li);
 
 		newItemInput.value = '';
