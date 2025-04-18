@@ -26,8 +26,8 @@
 ## 📁 Project Structure
 ```
 revofun/
-├── index.html         # Main entry point
-├── style.css          # Global styles
+├── index.html                     # Main entry point
+├── style/                         # Global styles
 ├── scripts/
 │   ├── rockpaperscissors.html     # Rock Paper Scissors Script
 │   ├── guessnumber.html           # Number Guessing Script
@@ -37,6 +37,7 @@ revofun/
 │   ├── guessnumber.html           # Number Guessing Game
 │   └── dotclick.html              # Dot Clicker
 └── assets/                        # Images, icons
+└── tailwind.config.js             # Tailwind Config
 ```
 ---
 
