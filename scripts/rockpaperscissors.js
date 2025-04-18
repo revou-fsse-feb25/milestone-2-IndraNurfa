@@ -10,7 +10,7 @@ document.querySelector('[data-choices="paper"]').innerText = 'Paper';
 document.querySelector('[data-choices="scissors"]').innerText = 'Scissors';
 
 let userChoices = 'none';
-let score = parseInt(localStorage.getItem('scoreRPS'), 10) || 0;
+let score = 0;
 
 const CHOICES = ['rock', 'paper', 'scissors'];
 const WINNING_CONDITIONS = {
@@ -59,7 +59,6 @@ function logicGame(userChoices) {
 	} else if (result.includes('lose')) {
 		resetGame();
 	}
-	localStorage.setItem('scoreRPS', score);
 
 	const highScore = parseInt(localStorage.getItem('highScoreRPS'), 10) || 0;
 	if (score > highScore) {
