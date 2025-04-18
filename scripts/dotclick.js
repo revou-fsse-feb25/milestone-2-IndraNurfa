@@ -5,14 +5,11 @@ canvas.width = 800;
 canvas.height = 400;
 document.body.appendChild(canvas);
 
-const titleHeader = document.getElementById('title');
-const scoreText = document.getElementById('score');
-
-titleHeader.innerText = 'Click the Dots!';
+const timeCountdown = document.getElementById('time-countdown');
 
 let dots = [];
-let time = 10;
-let isGameOver = false;
+let time = 60;
+let isGameOver = true;
 let score = 0;
 let countdown = null;
 
@@ -47,7 +44,7 @@ function drawDots() {
 	dots.forEach((dot) => {
 		ctx.beginPath();
 		ctx.arc(dot.x, dot.y, dot.radius, 0, 2 * Math.PI);
-		ctx.fillStyle = 'red';
+		ctx.fillStyle = '#53dfd1';
 		ctx.fill();
 		ctx.closePath();
 	});
@@ -59,20 +56,6 @@ canvas.addEventListener('click', (event) => {
 	const mouseX = event.clientX - rect.left;
 	const mouseY = event.clientY - rect.top;
 
-	// Check if the click is inside any dot
-	dots = dots.filter((dot) => {
-		const distanceSquared = (mouseX - dot.x) ** 2 + (mouseY - dot.y) ** 2;
-		if (distanceSquared > dot.radius ** 2) {
-			return true; // Keep the dot if not clicked
-		} else {
-			score++;
-			scoreText.innerText = `Score: ${score}`;
-			createDot(); // Replace the clicked dot with a new one
-			return false; // Remove the clicked dot
-		}
-	});
-
-	// Check if the reset button is clicked
 	if (
 		isGameOver &&
 		mouseX >= 350 &&
@@ -81,23 +64,53 @@ canvas.addEventListener('click', (event) => {
 		mouseY <= 290
 	) {
 		resetGame();
+	} else if (isGameOver && time <= 0) {
+		return;
 	}
+
+	// Check if the click is inside any dot
+	dots = dots.filter((dot) => {
+		const distanceSquared = (mouseX - dot.x) ** 2 + (mouseY - dot.y) ** 2;
+		if (distanceSquared > dot.radius ** 2) {
+			return true; // Keep the dot if not clicked
+		} else {
+			score++;
+			createDot(); // Replace the clicked dot with a new one
+			return false; // Remove the clicked dot
+		}
+	});
 });
 
 // Function to draw the game over screen
 function drawGameOver() {
+	// Draw background with opacity
 	ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+	// Draw game over text
 	ctx.fillStyle = 'white';
-	ctx.font = '48px Arial';
-	ctx.fillText('Game Over!', 275, 200);
+	ctx.font = '48px cursive';
+	ctx.textAlign = 'center';
+	ctx.fillText('Game Over', canvas.width / 2, 100);
+
+	let textScore = `Your Score: ${score}`;
+	let highScore = parseInt(localStorage.getItem('highScoreDotClick'), 10) || 0;
+	if (score > highScore) {
+		localStorage.setItem('highScoreDotClick', score);
+		textScore = `New High Score : ${score}!`;
+	}
+	// Draw final score
+	ctx.fillStyle = 'white';
+	ctx.font = '36px cursive';
+	ctx.fillText(textScore, canvas.width / 2, 200);
 
 	// Draw reset button
-	ctx.fillStyle = '#290628';
+	ctx.fillStyle = '#F51720';
 	ctx.fillRect(350, 250, 100, 40);
 	ctx.fillStyle = 'white';
-	ctx.font = '20px Arial';
-	ctx.fillText('Reset', 375, 275);
+	ctx.font = '20px cursive';
+	ctx.textAlign = 'center';
+	ctx.fillText('Restart', canvas.width / 2, 275);
 }
 
 // Function to draw the start screen
@@ -105,57 +118,69 @@ function drawGameStart() {
 	ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	ctx.fillStyle = 'white';
-	ctx.font = '48px Arial';
+	ctx.font = '48px cursive';
 	ctx.fillText('Start Game!', 275, 200);
 
 	// Draw ready button
 	ctx.fillStyle = '#136F63';
 	ctx.fillRect(350, 250, 100, 40);
 	ctx.fillStyle = 'white';
-	ctx.font = '20px Arial';
-	ctx.fillText('Ready', 375, 275);
-
-	isGameOver = true;
+	ctx.font = '20px cursive';
+	ctx.fillText('Ready', 373, 275);
 }
 
 // Function to reset the game
 function resetGame() {
 	isGameOver = false;
 	score = 0;
-	time = 10;
-	dots = [];
+	time = 60;
 	countdown = null;
 	gameLoop();
 }
 
-// Main game loop
 function gameLoop() {
 	if (isGameOver || time <= 0) {
-		isGameOver = true;
-		scoreText.innerText = `Score: ${score}`;
-		drawGameOver();
+		endGame();
 		return;
 	}
 
 	createDot();
 	drawDots();
-
-	if (!countdown) {
-		countdown = setInterval(() => {
-			if (time <= 0) {
-				clearInterval(countdown);
-				countdown = null;
-				isGameOver = true;
-				drawGameOver();
-			} else {
-				time--;
-				titleHeader.innerText = `Time left: ${time} seconds`;
-			}
-		}, 1000);
-	}
-
+	startCountdown();
 	requestAnimationFrame(gameLoop);
 }
 
-// Start the game
+function endGame() {
+	clearInterval(countdown);
+	countdown = null;
+	isGameOver = true;
+	drawGameOver();
+}
+
+function startCountdown() {
+	if (!countdown) {
+		countdown = setInterval(() => {
+			if (time <= 0) {
+				endGame();
+			} else {
+				time--;
+				timeCountdown.innerText = `Time left: ${time} seconds`;
+			}
+		}, 1000);
+	}
+}
+
+function handleInput(e) {
+	if (isGameOver) {
+		if (e.code === 'Enter' || e.code === 'Space') {
+			resetGame();
+		}
+	} else {
+		if (e.code === 'Escape') {
+			endGame();
+		}
+	}
+}
+
 drawGameStart();
+document.addEventListener('keypress', handleInput);

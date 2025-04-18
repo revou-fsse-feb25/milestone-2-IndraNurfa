@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +16,8 @@
     <script src="https://kit.fontawesome.com/65199da800.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="css/style.css" />
-    <title>RevoFun - Ahmad Indra Nurfauzi</title>
+
+    <title>Dot Click Game</title>
 
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicon/apple-icon-57x57.png">
@@ -38,32 +40,19 @@
 </head>
 
 <body>
-    <header class="text-center mt-[10%] py-4">
-        <h1 class="text-4xl font-bold">RevoFun</h1>
-        <h2 class="text-xl mt-2">Ahmad Indra Nurfauzi - Team 2</h2>
-    </header>
-    <main class="flex justify-center mt-10">
-        <ul class="grid grid-cols-3 gap-4">
-            <li>
-                <a href="games/rockpaperscissors.html"
-                    class="block px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition text-center">
-                    Rock Paper Scissors
-                </a>
-            </li>
-            <li>
-                <a href="games/guessnumber.html"
-                    class="block px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition text-center">
-                    Guess Number
-                </a>
-            </li>
-            <li>
-                <a href="games/dotclick.html"
-                    class="block px-6 py-3 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition text-center">
-                    Dot Click
-                </a>
-            </li>
-        </ul>
-    </main>
+    <div class="container mt-[10px] mx-auto space-y-4 p-2">
+        <a href="./index.html" class="text-lg">
+            <i class="fa-solid fa-house fa-xl"></i> Home
+        </a>
+    </div>
+    <div class="container mx-auto mt-[50px]">
+        <h1 id="title" class="text-4xl mt-[20px] flex justify-center items-center text-center">Click the Dots for 60
+            Secs!</h1>
+        <p id="time-countdown" class="text-xl my-4 flex justify-center items-center text-center">Time left: 60 seconds
+        </p>
+    </div>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+    <script src="scripts/dotclick.js"></script>
 </body>
 
 </html>

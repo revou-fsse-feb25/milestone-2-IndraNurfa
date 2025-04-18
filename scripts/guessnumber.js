@@ -28,6 +28,7 @@ function handleAddItem() {
 
 	if (!isNaN(number) && number >= 1 && number <= 100) {
 		const li = document.createElement('li');
+		li.className = 'text-center';
 		li.textContent = number;
 
 		const hintText = document.createElement('span');
@@ -97,11 +98,11 @@ function handleDeleteItem() {
 }
 
 function handleKeyPress(e) {
-	if (e.key === 'Enter') {
+	if (e.code === 'Enter') {
 		addBtn.click();
 	}
 }
 
 addBtn.addEventListener('click', handleAddItem);
-newItemInput.addEventListener('click', handleKeyPress);
+newItemInput.addEventListener('keypress', handleKeyPress);
 resetBtn.addEventListener('click', resetGame);
