@@ -59,7 +59,7 @@ function logicGame(userChoices) {
 	} else if (result.includes('lose')) {
 		resetGame();
 	}
-	localStorage.setItem('score', score);
+	localStorage.setItem('scoreRPS', score);
 
 	const highScore = parseInt(localStorage.getItem('highScoreRPS'), 10) || 0;
 	if (score > highScore) {

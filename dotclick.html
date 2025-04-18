@@ -4,25 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <!-- Tailwind -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/65199da800.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Dot Click Game</title>   
     <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f0f0f0;
+        #title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: 20px;
+            color: #333;
         }
 
-        canvas {
-            border: 2px solid #333;
-            background-color: white;
+        #score {
+            text-align: center;
+            font-size: 1.2em;
+            color: #555;
         }
     </style>
 </head>
 
 <body>
+    <div class="container mt-[10px] mx-auto space-y-4 p-4">
+        <a href="./index.html">
+            <i class="fa-solid fa-house"></i> Home
+        </a>
+    </div>
+    <div>
+        <p id="title">Dot Click Game</p>
+    </div>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+    <div>
+        <p id="score"></p>
+    </div>
     <script src="scripts/dotclick.js"></script>
 </body>
 
