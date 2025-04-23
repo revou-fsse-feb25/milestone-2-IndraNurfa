@@ -10,14 +10,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/65199da800.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../css/style.css" />
 
-    <title>Dot Click Game</title>
+    <title>Dot Click</title>
 
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="../assets/favicon/apple-icon-57x57.png">
@@ -41,18 +41,19 @@
 
 <body>
     <div class="container mt-[10px] mx-auto space-y-4 p-2">
-        <a href="../index.html" class="text-lg">
+        <a href="../index.html" class="text-xl hover:underline hover:underline-offset-2">
             <i class="fa-solid fa-house fa-xl"></i> Home
         </a>
     </div>
     <div class="container mx-auto mt-[50px]">
-        <h1 id="title" class="text-4xl mt-[20px] flex justify-center items-center text-center">Click the Dots for 60
+        <h1 id="title" class="text-4xl font-bold mt-[20px] flex justify-center items-center text-center">Click the Dots for 60
             Secs!</h1>
-        <p id="time-countdown" class="text-xl my-4 flex justify-center items-center text-center">Time left: 60 seconds
+        <p id="time-countdown" class="text-xl font-medium my-4 flex justify-center items-center text-center">Time left: 60 seconds
         </p>
     </div>
-    <canvas id="myCanvas" width="800" height="600"></canvas>
-    <script src="../scripts/dotclick.js"></script>
+    <canvas id="myCanvas" width="800" height="600">Your browser does not support the HTML canvas tag.</canvas>
+    <script src="../scripts/utils.js" type="module"></script>
+    <script src="../scripts/dotclick.js" type="module"></script>
 </body>
 
 </html>

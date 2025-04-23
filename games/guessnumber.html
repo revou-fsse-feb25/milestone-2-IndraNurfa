@@ -10,7 +10,7 @@
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
 
 	<!-- Font Awesome -->
 	<script src="https://kit.fontawesome.com/65199da800.js" crossorigin="anonymous"></script>
@@ -41,14 +41,15 @@
 
 <body>
 	<div class="container mt-[10px] mx-auto space-y-4 p-2">
-		<a href="../index.html" class="text-lg">
+		<a href="../index.html" class="text-xl hover:underline hover:underline-offset-2">
 			<i class="fa-solid fa-house fa-xl"></i> Home
 		</a>
 	</div>
 
 	<div class="container mt-[200px] mx-auto flex flex-col items-center justify-center space-y-4 p-4">
-		<h1 class="text-3xl font-bold text-center">Guess Number</h1>
-		<p>Input number 1-100</p>
+		<h1 class="typing-container text-4xl font-bold text-center">Guess Number&nbsp;<span class="typing"
+				typing-speed="100" typing-delay="1000"></span></h1>
+		<p class="text-2xl">Input number between 1-100</p>
 		<div class="block">
 			<input type="number" id="new-item" placeholder="Your Guess Number"
 				class="border-2 border-black bg-[#F0F7E0] focus:outline-none focus:ring-1 focus:ring-[#2E8BC0] focus:border-[#2E8BC0] rounded-lg px-2 py-1 " />
@@ -59,10 +60,14 @@
 		<ul id="item-list"></ul>
 	</div>
 	<div class="container mt-12 mx-auto flex flex-col items-center justify-center text-center">
-		<h1 id="result-game" class="text-lg"></h1>
-		<p id="reset-btn" class="underline underline-offset-2" style="display: none;"></p>
+		<h1 id="result-game" class="text-xl font-black"></h1>
+		<p id="reset-btn"
+			class="underline underline-offset-2 cursor-pointer text-lg font-semibold hover:text-xl hover:font-bold hover:text-slate-800 hover:drop-shadow-xl/50 transition-transform delay-150 duration-500 ease-in-out "
+			style="display: none;"></p>
 	</div>
-	<script src="../scripts/guessnumber.js"></script>
+	<script src="../scripts/utils.js" type="module"></script>
+	<script src="../scripts/typing-number.js" type="module"></script>
+	<script src="../scripts/guessnumber.js" type="module"></script>
 </body>
 
 </html>

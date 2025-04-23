@@ -1,4 +1,5 @@
-// Get DOM elements
+import { getRandomNumber } from './utils.js';
+
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 800;
@@ -21,8 +22,8 @@ function createDot() {
 
 		do {
 			newDot = {
-				x: Math.random() * (canvas.width - 50) + 25, // Ensure within canvas boundaries
-				y: Math.random() * (canvas.height - 50) + 25, // Ensure within canvas boundaries
+				x: getRandomNumber(25, canvas.width - 50), // Ensure within canvas boundaries
+				y: getRandomNumber(25, canvas.height - 50), // Ensure within canvas boundaries
 				radius: 25,
 			};
 
@@ -89,7 +90,7 @@ function drawGameOver() {
 
 	// Draw game over text
 	ctx.fillStyle = 'white';
-	ctx.font = '48px cursive';
+	ctx.font = '48px "Playpen Sans", cursive';
 	ctx.textAlign = 'center';
 	ctx.fillText('Game Over', canvas.width / 2, 100);
 
@@ -101,14 +102,14 @@ function drawGameOver() {
 	}
 	// Draw final score
 	ctx.fillStyle = 'white';
-	ctx.font = '36px cursive';
+	ctx.font = '36px "Playpen Sans", cursive';
 	ctx.fillText(textScore, canvas.width / 2, 200);
 
 	// Draw reset button
 	ctx.fillStyle = '#F51720';
 	ctx.fillRect(350, 250, 100, 40);
 	ctx.fillStyle = 'white';
-	ctx.font = '20px cursive';
+	ctx.font = '20px "Playpen Sans", cursive';
 	ctx.textAlign = 'center';
 	ctx.fillText('Restart', canvas.width / 2, 275);
 }
@@ -118,15 +119,15 @@ function drawGameStart() {
 	ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	ctx.fillStyle = 'white';
-	ctx.font = '48px cursive';
-	ctx.fillText('Start Game!', 275, 200);
+	ctx.font = '48px "Playpen Sans", cursive';
+	ctx.fillText('Start Game!', 280, 200);
 
 	// Draw ready button
 	ctx.fillStyle = '#136F63';
 	ctx.fillRect(350, 250, 100, 40);
 	ctx.fillStyle = 'white';
-	ctx.font = '20px cursive';
-	ctx.fillText('Ready', 373, 275);
+	ctx.font = '20px "Playpen Sans", cursive';
+	ctx.fillText('Ready', 370, 275);
 }
 
 // Function to reset the game
