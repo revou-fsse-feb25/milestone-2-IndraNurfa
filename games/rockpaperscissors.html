@@ -10,14 +10,14 @@
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
 
 	<!-- Font Awesome -->
 	<script src="https://kit.fontawesome.com/65199da800.js" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="../css/style.css" />
 
-	<title>ROCKPAPERSCISSORGAME</title>
+	<title>Rock Paper Scissors</title>
 
 	<!-- favicon -->
 	<link rel="apple-touch-icon" sizes="57x57" href="../assets/favicon/apple-icon-57x57.png">
@@ -41,31 +41,52 @@
 
 <body>
 	<div class="container mt-[10px] mx-auto space-y-4 p-2">
-		<a href="../index.html" class="text-lg">
+		<a href="../index.html" class="text-xl hover:underline hover:underline-offset-2">
 			<i class="fa-solid fa-house fa-xl"></i> Home
 		</a>
 	</div>
 
 	<div
-		class="container mt-[200px] mb-[50px] mx-auto flex flex-col items-center justify-center text-center space-y-4 p-4">
-		<h1 class="text-3xl font-bold">Rock Paper Scissors Game</h1>
-		<p class="text-lg">Choose your weapon!</p>
+		class="container mt-[100px] mb-[50px] mx-auto flex flex-col items-center justify-center text-center space-y-4 p-4">
+		<h1 class="text-4xl font-bold">Rock Paper Scissors Game</h1>
+		<p class="text-2xl">Choose your weapon!</p>
 	</div>
 	<div id="player-input" class="container mx-auto flex items-center justify-center space-x-10">
-		<button id="choices-btn" type="button" data-choices="rock"
-			class="focus:outline-none text-white bg-[#cb2041] hover:bg-[#c46038] focus:ring-2 focus:ring-[#552537] font-medium rounded-lg text-md px-5 py-2.5"></button>
-		<button id="choices-btn" type="button" data-choices="paper"
-			class="focus:outline-none text-white bg-[#1f8852] hover:bg-[#6c881f] focus:ring-2 focus:ring-[#22422d] font-medium rounded-lg text-md px-5 py-2.5"></button>
-		<button id="choices-btn" type="button" data-choices="scissors"
-			class="focus:outline-none text-white bg-[#1F5B93] hover:bg-[#0c7d91] focus:ring-2 focus:ring-[#29335C] font-medium rounded-lg text-md px-5 py-2.5"></button>
+		<ul class="flex space-x-10">
+			<li>
+				<button
+					class="choices-btn focus:outline-none bg-[#26006E] hover:ring-2 hover:ring-[#FE2BF1] focus:ring-[#FE2BF1] focus:ring-4 rounded-lg px-5 py-2.5 transition-all duration-300"
+					data-choices="rock">
+					<img src="../assets/logo/rock.png" alt="Rock" width="100px" height="200px"
+						onclick="event.target.closest('button').click()">
+				</button>
+			</li>
+			<li>
+				<button
+					class="choices-btn focus:outline-none bg-[#26006E] hover:ring-2 hover:ring-[#00DFBA] focus:ring-4 focus:ring-[#00DFBA] rounded-lg px-5 py-2.5 transition-all duration-300"
+					data-choices="paper">
+					<img src="../assets/logo/paper.png" alt="Paper" width="100px" height="200px"
+						onclick="event.target.closest('button').click()">
+				</button>
+			</li>
+			<li>
+				<button
+					class="choices-btn focus:outline-none bg-[#26006E] hover:ring-2 hover:ring-[#0C7CEB] focus:ring-4 focus:ring-[#0C7CEB] rounded-lg px-5 py-2.5 transition-all duration-300"
+					data-choices="scissors">
+					<img src="../assets/logo/scissors.png" alt="Scissors" width="100px" height="200px"
+						onclick="event.target.closest('button').click()">
+				</button>
+			</li>
+		</ul>
 	</div>
-	<div class="container mt-12 mx-auto flex flex-col items-center justify-center text-center space-y-4 p-4">
-		<h1 id="result" class="font-bold text-2xl"></h1>
-		<p id="player-choices" class="text-lg"></p>
-		<p id="current-score" class="text-lg"></p>
-		<p id="new-high-score" class="text-lg text-red-600"></p>
+	<div class="container mt-10 mx-auto flex flex-col items-center justify-center text-center space-y-4 p-4">
+		<p id="player-choices" class="font-bold text-xl"></p>
+		<h1 id="result" class="font-black text-2xl"></h1>
+		<p id="current-score" class="font-normal text-lg"></p>
+		<p id="new-high-score" class="font-semibold text-lg text-red-600"></p>
 	</div>
-	<script src="../scripts/rockpaperscissors.js"></script>
+	<script src="../scripts/utils.js" type="module"></script>
+	<script src="../scripts/rockpaperscissors.js" type="module"></script>
 </body>
 
 </html>
