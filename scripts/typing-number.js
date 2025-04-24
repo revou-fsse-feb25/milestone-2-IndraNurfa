@@ -11,7 +11,6 @@ import { getRandomNumber } from './utils.js';
 	}
 
 	// Variables
-	const randomNumbers = generateRandomNumbers(10, 1, 100);
 	const typer = document.querySelector('span[typing-speed]');
 	if (!typer) {
 		console.error('Error: Element with attribute [typing-speed] not found.');
@@ -20,6 +19,7 @@ import { getRandomNumber } from './utils.js';
 
 	const typingSpeed = parseInt(typer.getAttribute('typing-speed')) || 500;
 	const typingDelay = parseInt(typer.getAttribute('typing-delay')) || 1000;
+	const randomNumbers = generateRandomNumbers(10, 1, 100);
 	let currentNumberIndex = 0;
 	let currentCharacterIndex = 0;
 

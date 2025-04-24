@@ -4,162 +4,184 @@ import {
 	updateLeaderboard,
 } from './utils.js';
 
-const addBtn = document.getElementById('add-btn');
-const newItemInput = document.getElementById('new-item');
-const itemList = document.getElementById('item-list');
-const resultHeader = document.getElementById('result-game');
-const resetBtn = document.getElementById('reset-btn');
+class GuessNumberGame {
+	constructor() {
+		// DOM Elements
+		this.addBtn = document.getElementById('add-btn');
+		this.newItemInput = document.getElementById('new-item');
+		this.itemList = document.getElementById('item-list');
+		this.resultHeader = document.getElementById('result-game');
+		this.resetBtn = document.getElementById('reset-btn');
 
-let attempts = 2;
-let randomNumber = 0;
-let startTime = 0;
-let score = 0;
-let isGameOver = false;
+		// Game Variables
+		this.attempts = 2;
+		this.randomNumber = 0;
+		this.startTime = 0;
+		this.score = 0;
+		this.isGameOver = false;
 
-resetBtn.style.display = 'none';
-
-function handleAddItem() {
-	if (attempts === 0 || isGameOver) {
-		alert('You have already lost');
-		return;
+		// Initialize the game
+		this.resetBtn.style.display = 'none';
+		this.initEventListeners();
 	}
 
-	if (randomNumber === 0) {
-		randomNumber = getRandomNumber(1, 100);
-		startTime = Date.now();
-	}
-
-	console.log('Random number:', randomNumber);
-
-	const numberInput = newItemInput.value.trim();
-	const number = parseInt(numberInput, 10);
-
-	if (!isNaN(number) && number >= 1 && number <= 100 && !isGameOver) {
-		const li = document.createElement('li');
-		li.className = 'text-center text-lg font-bold';
-
-		const hintText = document.createElement('span');
-		const difference = Math.abs(number - randomNumber);
-		let hintTextContent = `${number}`;
-		if (number > randomNumber) {
-			hintTextContent +=
-				difference <= 10 ? ' too high, but you are close' : ' too high';
-		} else if (number < randomNumber) {
-			hintTextContent +=
-				difference <= 10 ? ' too low, but you are close' : ' too low';
-		} else {
-			hintTextContent += ' is the correct number!';
-		}
-
-		li.appendChild(hintText);
-		applyTransition(li, hintTextContent, 250);
-		itemList.appendChild(li);
-
-		newItemInput.value = '';
-		if (number === randomNumber) {
-			finishGame();
+	// Handle adding a new guess
+	handleAddItem() {
+		if (this.attempts === 0 || this.isGameOver) {
+			alert('You have already lost');
 			return;
 		}
 
-		attempts--;
-		if (attempts === 0) {
-			isGameOver = true;
-			applyTransition(
-				resultHeader,
-				`You Lose, guess number is ${randomNumber} :')`,
-				500
-			);
-			applyTransition(resetBtn, 'Restart Game', 500);
-			resetBtn.style.display = 'block';
-			return;
+		if (this.randomNumber === 0) {
+			this.randomNumber = getRandomNumber(1, 100);
+			this.startTime = Date.now();
 		}
-	} else {
-		alert('Please enter a valid number between 1 and 100.');
-	}
-}
 
-function finishGame() {
-	isGameOver = true; // Set game over flag to true
-	const endTime = Date.now(); // Get the end time
-	const elapsedTime = (endTime - startTime) / 1000; // Calculate elapsed time in seconds
+		console.log('Random number:', this.randomNumber);
 
-	score = Math.max(100 - Math.floor(elapsedTime * 10) + attempts * 10, 0);
+		const numberInput = this.newItemInput.value.trim();
+		const number = parseInt(numberInput, 10);
 
-	const data = { username: 'test', score: score };
-	updateLeaderboard('highScoreGN', data);
+		if (!isNaN(number) && number >= 1 && number <= 100 && !this.isGameOver) {
+			const li = document.createElement('li');
+			li.className = 'text-center text-lg font-bold';
 
-	applyTransition(
-		resultHeader,
-		`Nice, guess number is ${randomNumber}. Your score: ${score}`,
-		500
-	);
-	applyTransition(resetBtn, 'Restart Game', 500);
-	resetBtn.style.display = 'block';
-}
+			const hintText = document.createElement('span');
+			const difference = Math.abs(number - this.randomNumber);
+			let hintTextContent = `${number}`;
+			if (number > this.randomNumber) {
+				hintTextContent +=
+					difference <= 10 ? ' too high, but you are close' : ' too high';
+			} else if (number < this.randomNumber) {
+				hintTextContent +=
+					difference <= 10 ? ' too low, but you are close' : ' too low';
+			} else {
+				hintTextContent += ' is the correct number!';
+			}
 
-function resetGame() {
-	try {
-		const items = Array.from(itemList.children);
-		newItemInput.disabled = true; // Disable input during reset
+			li.appendChild(hintText);
+			applyTransition(li, hintTextContent, 250);
+			this.itemList.appendChild(li);
 
-		let completedTransitions = 0; // Track completed transitions
-		const totalItems = items.length;
+			this.newItemInput.value = '';
+			if (number === this.randomNumber) {
+				this.finishGame();
+				return;
+			}
 
-		items.forEach((item, index) => {
-			setTimeout(() => {
-				item.style.transition = 'all 500ms ease-in';
-				item.style.opacity = '0';
-				item.addEventListener(
-					'transitionend',
-					() => {
-						if (item.parentNode) {
-							itemList.removeChild(item);
-						}
-						completedTransitions++;
-
-						// Re-enable input after all transitions are complete
-						if (completedTransitions === totalItems) {
-							newItemInput.disabled = false;
-						}
-					},
-					{ once: true }
+			this.attempts--;
+			if (this.attempts === 0) {
+				this.isGameOver = true;
+				applyTransition(
+					this.resultHeader,
+					`You Lose, guess number is ${this.randomNumber} :')`,
+					500
 				);
-			}, Math.min(index * 300, 3000)); // Limit maximum delay
-		});
-
-		// Reset game state
-		attempts = 2;
-		randomNumber = 0;
-		isGameOver = false;
-		score = 0;
-		startTime = 0;
-
-		applyTransition(resultHeader, '');
-		applyTransition(resetBtn, '');
-		resultHeader.innerText = '';
-
-		newItemInput.value = '';
-		resetBtn.style.display = 'none';
-
-		// If there are no items, re-enable input immediately
-		if (totalItems === 0) {
-			newItemInput.disabled = false;
+				applyTransition(this.resetBtn, 'Restart Game', 500);
+				this.resetBtn.style.display = 'block';
+				return;
+			}
+		} else {
+			alert('Please enter a valid number between 1 and 100.');
 		}
-	} catch (error) {
-		console.error('Error resetting the game:', error);
-		alert(
-			'An error occurred while resetting the game. Please refresh the page.'
+	}
+
+	// Finish the game
+	finishGame() {
+		this.isGameOver = true;
+		const endTime = Date.now();
+		const elapsedTime = (endTime - this.startTime) / 1000;
+
+		this.score = Math.max(
+			100 - Math.floor(elapsedTime * 10) + this.attempts * 10,
+			0
 		);
-		newItemInput.disabled = false; // Ensure input is re-enabled in case of error
+
+		const data = { username: 'test', score: this.score };
+		updateLeaderboard('highScoreGN', data);
+
+		applyTransition(
+			this.resultHeader,
+			`Nice, guess number is ${this.randomNumber}. Your score: ${this.score}`,
+			500
+		);
+		applyTransition(this.resetBtn, 'Restart Game', 500);
+		this.resetBtn.style.display = 'block';
+	}
+
+	// Reset the game
+	resetGame() {
+		try {
+			const items = Array.from(this.itemList.children);
+			this.newItemInput.disabled = true;
+
+			let completedTransitions = 0;
+			const totalItems = items.length;
+
+			items.forEach((item, index) => {
+				setTimeout(() => {
+					item.style.transition = 'all 500ms ease-in';
+					item.style.opacity = '0';
+					item.addEventListener(
+						'transitionend',
+						() => {
+							if (item.parentNode) {
+								this.itemList.removeChild(item);
+							}
+							completedTransitions++;
+
+							if (completedTransitions === totalItems) {
+								this.newItemInput.disabled = false;
+							}
+						},
+						{ once: true }
+					);
+				}, Math.min(index * 300, 3000));
+			});
+
+			// Reset game state
+			this.attempts = 2;
+			this.randomNumber = 0;
+			this.isGameOver = false;
+			this.score = 0;
+			this.startTime = 0;
+
+			applyTransition(this.resultHeader, '');
+			applyTransition(this.resetBtn, '');
+			this.resultHeader.innerText = '';
+
+			this.newItemInput.value = '';
+			this.resetBtn.style.display = 'none';
+
+			if (totalItems === 0) {
+				this.newItemInput.disabled = false;
+			}
+		} catch (error) {
+			console.error('Error resetting the game:', error);
+			alert(
+				'An error occurred while resetting the game. Please refresh the page.'
+			);
+			this.newItemInput.disabled = false;
+		}
+	}
+
+	// Handle keypress events
+	handleKeyPress(e) {
+		if (e.code === 'Enter') {
+			this.addBtn.click();
+		}
+	}
+
+	// Initialize event listeners
+	initEventListeners() {
+		this.addBtn.addEventListener('click', this.handleAddItem.bind(this));
+		this.newItemInput.addEventListener(
+			'keypress',
+			this.handleKeyPress.bind(this)
+		);
+		this.resetBtn.addEventListener('click', this.resetGame.bind(this));
 	}
 }
 
-function handleKeyPress(e) {
-	if (e.code === 'Enter') {
-		addBtn.click();
-	}
-}
-
-addBtn.addEventListener('click', handleAddItem);
-newItemInput.addEventListener('keypress', handleKeyPress);
-resetBtn.addEventListener('click', resetGame);
+// Initialize the game
+const game = new GuessNumberGame();
