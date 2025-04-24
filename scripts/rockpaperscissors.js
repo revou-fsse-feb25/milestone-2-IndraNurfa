@@ -2,7 +2,6 @@ import {
 	applyTransition,
 	getRandomNumber,
 	updateLeaderboard,
-	validateUsername,
 } from './utils.js';
 
 class RockPaperScissors {

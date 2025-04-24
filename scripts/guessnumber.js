@@ -12,9 +12,10 @@ class GuessNumberGame {
 		this.itemList = document.getElementById('item-list');
 		this.resultHeader = document.getElementById('result-game');
 		this.resetBtn = document.getElementById('reset-btn');
+		this.attempDisplay = document.getElementById('attempts-left');
 
 		// Game Variables
-		this.attempts = 2;
+		this.attempts = 5;
 		this.randomNumber = 0;
 		this.startTime = 0;
 		this.score = 0;
@@ -70,6 +71,8 @@ class GuessNumberGame {
 			}
 
 			this.attempts--;
+			this.attempDisplay.innerText = `You have ${this.attempts} attempts left`;
+
 			if (this.attempts === 0) {
 				this.isGameOver = true;
 				applyTransition(
@@ -140,7 +143,7 @@ class GuessNumberGame {
 			});
 
 			// Reset game state
-			this.attempts = 2;
+			this.attempts = 5;
 			this.randomNumber = 0;
 			this.isGameOver = false;
 			this.score = 0;
@@ -149,6 +152,7 @@ class GuessNumberGame {
 			applyTransition(this.resultHeader, '');
 			applyTransition(this.resetBtn, '');
 			this.resultHeader.innerText = '';
+			this.attempDisplay.innerText = `You have ${this.attempts} attempts left`;
 
 			this.newItemInput.value = '';
 			this.resetBtn.style.display = 'none';
