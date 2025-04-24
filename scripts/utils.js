@@ -79,23 +79,3 @@ export function updateLeaderboard(leaderboardName, newEntry) {
 		console.error(`Failed to update leaderboard "${leaderboardName}":`, error);
 	}
 }
-
-/**
- * Validates a username. If invalid, returns a default username.
- * @param {string} username - The username to validate.
- * @param {string} [defaultUsername='Guest'] - The default username to return if validation fails.
- * @returns {string} A valid username.
- */
-export function validateUsername(username, defaultUsername = 'Guest') {
-	try {
-		// Check if the username is a string and not empty or whitespace
-		if (typeof username === 'string' && username.trim().length > 0) {
-			return username.trim(); // Return the trimmed valid username
-		} else {
-			throw new Error('Invalid username provided.');
-		}
-	} catch (error) {
-		console.warn(error.message); // Log a warning for debugging
-		return defaultUsername; // Return the default username
-	}
-}
