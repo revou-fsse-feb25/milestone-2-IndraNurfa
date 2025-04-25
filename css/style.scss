@@ -28,6 +28,21 @@ body {
     font-optical-sizing: auto;
 }
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
 canvas {
     border: 3px solid #444;
     background-color: #fff;
