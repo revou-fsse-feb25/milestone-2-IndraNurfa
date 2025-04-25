@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Tailwind -->
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/e396facf48.js" crossorigin="anonymous"></script>
@@ -31,7 +31,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="./assets/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content=" assets/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="./assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
 
@@ -51,41 +51,43 @@
 
 
     <header class="text-center mt-[100px]">
-        <h1 class="text-4xl font-extrabold">RevoFun</h1>
-        <h2 class="text-xl mt-2">Ahmad Indra Nurfauzi - Team 2</h2>
+        <h1 class="text-4xl font-extrabold">RevoFun: Simple Games, Pure Fun</h1>
+        <h2 class="text-xl mt-2">Jump into minimalist web games made for quick breaks and big smiles.</h2>
     </header>
 
-    <main class="container mx-auto flex justify-center mt-10">
+    <main class="container mx-auto flex justify-center my-[96px]">
         <ul class="grid grid-cols-3 gap-x-[50px] md:gap-x-5 md:mx-4 justify-center items-center">
-            <li class="button-74 py-2">
-                <a href="games/rockpaperscissors.html" class="block hover:underline hover:underline-offset-2">
-                    <h3 class="text-xl ">Rock Paper Scissors</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe eum illo placeat nam quae sed
-                        fugit
-                        velit tempore ducimus, pariatur cupiditate dignissimos illum numquam natus, reiciendis
-                        distinctio
-                        eligendi? Tenetur, fugit!</p>
-                </a>
+            <li class="menu-card py-2">
+            <a href="games/rockpaperscissors.html" class="block hover:underline hover:underline-offset-2">
+                <div class="w-[350px] h-[350px] mx-auto flex flex-col justify-between">
+                <h3 class="text-xl text-center">Rock Paper Scissors</h3>
+                <img src="./assets/gif/rock-paper-scissors-nickelodeon.gif" alt="rockpaperscissors"
+                    class="w-full h-[200px] object-cover">
+                <p class="text-sm text-center">Think you've got the magic touch? Keep picking right in this classic Rock Paper Scissors game to
+                    rack up your high score — but one wrong move, and it's game over! How long can your streak last?</p>
+                </div>
+            </a>
             </li>
-            <li class="button-74 py-2">
-                <a href="games/guessnumber.html" class="block hover:underline hover:underline-offset-2">
-                    <h3 class="text-xl ">Guess Number</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe eum illo placeat nam quae sed
-                        fugit
-                        velit tempore ducimus, pariatur cupiditate dignissimos illum numquam natus, reiciendis
-                        distinctio
-                        eligendi? Tenetur, fugit!</p>
-                </a>
+            <li class="menu-card py-2">
+            <a href="games/guessnumber.html" class="block hover:underline hover:underline-offset-2">
+                <div class="w-[350px] h-[350px] mx-auto flex flex-col justify-between">
+                <h3 class="text-xl text-center">Guess Number</h3>
+                <img src="./assets/gif/guessnumbergame.gif" alt="guessnumbergame"
+                    class="w-full h-[200px] object-cover bg-slate-300">
+                <p class="text-sm text-center">Can you crack the code? Guess the secret number between 1 and 100 in just 5 tries! A fun and
+                    addictive brain teaser that keeps you coming back for “just one more round.”</p>
+                </div>
+            </a>
             </li>
-            <li class="button-74 py-2">
-                <a href="games/dotclick.html" class="block hover:underline hover:underline-offset-2">
-                    <h3 class="text-xl">Dot Click</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe eum illo placeat nam quae sed
-                        fugit
-                        velit tempore ducimus, pariatur cupiditate dignissimos illum numquam natus, reiciendis
-                        distinctio
-                        eligendi? Tenetur, fugit!</p>
-                </a>
+            <li class="menu-card py-2">
+            <a href="games/dotclick.html" class="block hover:underline hover:underline-offset-2">
+                <div class="w-[350px] h-[350px] mx-auto flex flex-col justify-between">
+                <h3 class="text-xl text-center">Dot Click</h3>
+                <img src="./assets/gif/paraqeet-osu.gif" alt="dotclick" class="w-full h-[200px] object-cover">
+                <p class="text-sm text-center">Click it like you mean it! You've got 60 seconds to tap as many bouncing dots as possible. Fast,
+                    fun, and perfect for quick play sessions — challenge your reflexes and beat your best score!</p>
+                </div>
+            </a>
             </li>
         </ul>
     </main>
@@ -113,7 +115,7 @@
     </footer>
 
     <!-- Modal for Username Input -->
-    <div id="username-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
+    <div id="username-modal" class="fixed inset-0 bg-black bg-opacity-15 flex justify-center items-center z-50 hidden">
         <div class="bg-white p-6 rounded-lg shadow-lg w-80">
             <h2 class="text-xl font-bold mb-4 text-center">Enter Your Username</h2>
             <input id="username-input" type="text" placeholder="Enter your username"

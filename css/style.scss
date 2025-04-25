@@ -32,7 +32,6 @@ canvas {
     border: 3px solid #444;
     background-color: #fff;
     display: block;
-    margin: 50px auto;
     box-shadow: 0 4px 8px #393E41;
 }
 
@@ -54,7 +53,7 @@ canvas {
 }
 
 /* CSS */
-.button-74 {
+.menu-card {
     background-color: #fbeee0;
     border: 2px solid #422800;
     box-shadow: #422800 4px 4px 0;
@@ -73,17 +72,36 @@ canvas {
     transition: transform translate(2px, 2px) scale(0.95) 0.2s ease, box-shadow 0.2s ease;
 }
 
-.button-74:hover {
+.menu-card:hover {
     background-color: #fff;
 }
 
-.button-74:active {
+.menu-card:active {
     box-shadow: #422800 2px 2px 0 0;
 }
 
 @media (min-width: 768px) {
-    .button-74 {
+    .menu-card {
         min-width: 120px;
         padding: 0 25px;
     }
+}
+
+.leaderboard-card {
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    box-shadow: #422800 4px 4px 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: transform translate(2px, 2px) scale(0.95) 0.2s ease, box-shadow 0.2s ease;
 }

@@ -2,6 +2,7 @@ import {
 	applyTransition,
 	getRandomNumber,
 	updateLeaderboard,
+	getLeaderboard,
 } from './utils.js';
 
 class GuessNumberGame {
@@ -20,6 +21,8 @@ class GuessNumberGame {
 		this.startTime = 0;
 		this.score = 0;
 		this.isGameOver = false;
+		this.leaderboardName = 'highScoreGN';
+		this.currentUsername = localStorage.getItem('username') || 'Guest';
 
 		// Initialize the game
 		this.resetBtn.style.display = 'none';
@@ -35,6 +38,7 @@ class GuessNumberGame {
 
 		if (this.randomNumber === 0) {
 			this.randomNumber = getRandomNumber(1, 100);
+			console.log('Random number:', this.randomNumber);
 			this.startTime = Date.now();
 		}
 
@@ -90,7 +94,7 @@ class GuessNumberGame {
 	}
 
 	// Finish the game
-	finishGame() {
+	async finishGame() {
 		this.isGameOver = true;
 		const endTime = Date.now();
 		const elapsedTime = (endTime - this.startTime) / 1000;
@@ -100,8 +104,9 @@ class GuessNumberGame {
 			0
 		);
 
-		const data = { username: 'test', score: this.score };
-		updateLeaderboard('highScoreGN', data);
+		const data = { username: this.currentUsername, score: this.score };
+		await updateLeaderboard('highScoreGN', data);
+		await getLeaderboard(this.leaderboardName);
 
 		applyTransition(
 			this.resultHeader,
@@ -189,3 +194,6 @@ class GuessNumberGame {
 
 // Initialize the game
 const game = new GuessNumberGame();
+document.addEventListener('DOMContentLoaded', () => {
+	getLeaderboard(game.leaderboardName);
+});
