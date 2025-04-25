@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap");
-
 body {
   background: conic-gradient(from 90deg at 1px 1px, rgba(0, 0, 0, 0) 25%, #f1d5cc 0%) -0.5px -0.5px/1.2em 1.2em, linear-gradient(45deg, rgba(0, 0, 0, 0) calc(50% + -1 * 0.5px), #f1d5cc 0 calc(50% + 0.5px), rgba(0, 0, 0, 0) 0) 0 0/2.4em 2.4em, linear-gradient(-45deg, rgba(0, 0, 0, 0) calc(50% + -1 * 0.5px), #f1d5cc 0 calc(50% + 0.5px), rgba(0, 0, 0, 0) 0) 0 0/2.4em 2.4em;
 }
@@ -42,12 +41,10 @@ canvas {
   from {
     color: transparent;
   }
-
   to {
     color: #2E8BC0;
   }
 }
-
 /* CSS */
 .menu-card {
   background-color: #fbeee0;
@@ -82,7 +79,6 @@ canvas {
     padding: 0 25px;
   }
 }
-
 .leaderboard-card {
   background-color: #fbeee0;
   border: 2px solid #422800;

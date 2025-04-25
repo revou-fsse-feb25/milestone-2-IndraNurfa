@@ -4,7 +4,7 @@
 
 **Ahmad Indra Nurfauzi - Team 2**
 
-**RevoFun** is a lightweight and fun browser-based collection of casual games, built using **HTML**, **CSS**, and **JavaScript**. It’s designed for quick, engaging gameplay right in your browser—no installations, no fuss.
+**RevoFun** is a lightweight and fun browser-based collection of casual games, built using **HTML**, **CSS**, and **JavaScript** (**TypeScript** for fun). It’s designed for quick, engaging gameplay right in your browser—no installations, no fuss.
 
 🌐 [**Live Demo**](https://revou-fsse-feb25.github.io/milestone-2-IndraNurfa/)
 
@@ -28,16 +28,22 @@
 revofun/
 ├── index.html                     # Main entry point
 ├── style/                         # Global styles
+├── dist/                          # Compile from typescript file
 ├── scripts/
-│   ├── rockpaperscissors.html     # Rock Paper Scissors Script
-│   ├── guessnumber.html           # Number Guessing Script
-│   └── dotclick.html              # Dot Clicker Script
+│   ├── rockpaperscissors.js       # Rock Paper Scissors Script
+│   ├── guessnumber.js             # Number Guessing Script
+│   └── dotclick.js                # Dot Clicker Script
+│   └── typing-number.js           # Typing Animation 
+│   └── user.js                    # Username Script
+│   └── utils.js                   # Custom Script
 ├── games/
 │   ├── rockpaperscissors.html     # Rock Paper Scissors
 │   ├── guessnumber.html           # Number Guessing Game
 │   └── dotclick.html              # Dot Clicker
-└── assets/                        # Images, icons
-└── tailwind.config.js             # Tailwind Config
+├── typescript/                    # Typescript code
+├── assets/                        # Images, icons
+├── tailwind.config.js             # Tailwind Config
+└── tsconfig.json                  # Typescript Config
 ```
 ---
 
