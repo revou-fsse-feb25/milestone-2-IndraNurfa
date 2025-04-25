@@ -1,4 +1,4 @@
-import { getRandomNumber } from './utils.js';
+import { getRandomNumber, updateLeaderboard, getLeaderboard } from './utils.js';
 
 class DotClickGame {
 	constructor() {
@@ -10,14 +10,15 @@ class DotClickGame {
 		// Canvas Dimensions
 		this.canvas.width = 800;
 		this.canvas.height = 400;
-		document.body.appendChild(this.canvas);
 
 		// Game Variables
 		this.dots = [];
-		this.time = 60;
+		this.time = 10;
 		this.isGameOver = true;
 		this.score = 0;
 		this.countdown = null;
+		this.leaderboardName = 'highScoreDC';
+		this.currentUsername = localStorage.getItem('username') || 'Guest';
 
 		// Initialize Event Listeners
 		this.initEventListeners();
@@ -142,7 +143,7 @@ class DotClickGame {
 	resetGame() {
 		this.isGameOver = false;
 		this.score = 0;
-		this.time = 60;
+		this.time = 10;
 		this.countdown = null;
 		this.gameLoop();
 	}
@@ -161,11 +162,14 @@ class DotClickGame {
 	}
 
 	// End the game
-	endGame() {
+	async endGame() {
 		clearInterval(this.countdown);
 		this.countdown = null;
 		this.isGameOver = true;
 		this.drawGameOver();
+		const data = { username: this.currentUsername, score: this.score };
+		await updateLeaderboard(this.leaderboardName, data);
+		await getLeaderboard(this.leaderboardName);
 	}
 
 	// Start the countdown timer
@@ -204,3 +208,6 @@ class DotClickGame {
 
 // Initialize the game
 const game = new DotClickGame();
+document.addEventListener('DOMContentLoaded', () => {
+	getLeaderboard(game.leaderboardName);
+});

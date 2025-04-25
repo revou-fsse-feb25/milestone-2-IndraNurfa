@@ -79,3 +79,31 @@ export function updateLeaderboard(leaderboardName, newEntry) {
 		console.error(`Failed to update leaderboard "${leaderboardName}":`, error);
 	}
 }
+
+/**
+ * Retrieves leaderboard data from localStorage and populates the leaderboard table.
+ *
+ * @param {string} leaderboardName - The key name used to retrieve the leaderboard data from localStorage.
+ */
+export function getLeaderboard(leaderboardName) {
+	// Retrieve leaderboard data from localStorage
+	const leaderboardData =
+		JSON.parse(localStorage.getItem(leaderboardName)) || [];
+
+	// Select the table body
+	const tableBody = document.querySelector('#leaderboard-table tbody');
+
+	// Clear existing rows
+	tableBody.innerHTML = '';
+
+	// Populate the table with data
+	leaderboardData.forEach((entry, index) => {
+		const row = document.createElement('tr');
+		row.innerHTML = `
+            <td class="px-2">${index + 1}</td>
+            <td class="px-2">${entry.username}</td>
+            <td class="px-2">${entry.score}</td>
+        `;
+		tableBody.appendChild(row);
+	});
+}

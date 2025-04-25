@@ -2,6 +2,7 @@ import {
 	applyTransition,
 	getRandomNumber,
 	updateLeaderboard,
+	getLeaderboard,
 } from './utils.js';
 
 class RockPaperScissors {
@@ -15,6 +16,8 @@ class RockPaperScissors {
 		// Game Variables
 		this.userChoices = 'none';
 		this.currentScore = 0;
+		this.currentUsername = localStorage.getItem('username') || 'Guest';
+		this.leaderboardName = 'highScoreRPS';
 
 		// Choices and Winning Conditions
 		this.CHOICES = [
@@ -62,9 +65,14 @@ class RockPaperScissors {
 	}
 
 	// Reset the game
-	resetGame() {
-		const cachesData = { username: 'test', score: this.currentScore };
-		updateLeaderboard('highScoreRPS', cachesData);
+	async resetGame() {
+		const data = {
+			username: this.currentUsername,
+			score: this.currentScore,
+		};
+
+		await updateLeaderboard(this.leaderboardName, data);
+		await getLeaderboard(this.leaderboardName);
 
 		this.currentScore = 0;
 		this.scoreDisplay.innerHTML = '';
@@ -94,14 +102,9 @@ class RockPaperScissors {
 			this.currentScore += 10;
 			const scoreText = `Current Score: ${this.currentScore}`;
 			applyTransition(this.scoreDisplay, scoreText, 300);
+			applyTransition(this.newHighScoreDisplay, newHighScoreText, 300);
 		} else if (result.includes('lose') && this.currentScore > 0) {
 			this.resetGame();
-		}
-
-		const highScore = parseInt(localStorage.getItem('highScoreRPS'), 10) || 0;
-		if (this.currentScore > highScore) {
-			const newHighScoreText = `New High Score: ${this.currentScore}!`;
-			applyTransition(this.newHighScoreDisplay, newHighScoreText, 300);
 		}
 	}
 
@@ -126,3 +129,6 @@ class RockPaperScissors {
 
 // Initialize the game
 const game = new RockPaperScissors();
+document.addEventListener('DOMContentLoaded', () => {
+	getLeaderboard(game.leaderboardName);
+});
